@@ -1,0 +1,65 @@
+<!-- <p>login works!</p>
+
+<div class="container">
+    <div class="col">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label>Email:</label>
+                <input type="text" formControlName="userName" placeholder="Enter username or email..">
+            </div>
+            <div class="mb-3">
+                <label>Password:</label>
+                <input type="password" formControlName="password" placeholder="Enter password..">
+            </div>
+            <div class="mb-3">
+                <button type="submit" >Login</button>
+            </div>
+           
+        </form>
+    </div>
+</div>
+<router-outlet></router-outlet> -->
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <h3 class="text-center mb-4 text-primary">Login</h3>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="emailId"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-2">
+        Login
+      </button>
+    </form>
+
+    <div class="text-center mt-3">
+      <p class="text-muted">
+        Don’t have an account?
+        <a routerLink="/auth/register" class="text-decoration-none text-primary fw-semibold">
+          Sign Up
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

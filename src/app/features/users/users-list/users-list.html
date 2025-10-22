@@ -1,0 +1,34 @@
+<!-- <p>users-list works!</p> -->
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">EmployeeId</th>
+      <th scope="col">FullName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Gender</th>
+      <th scope="col">DateOfJoining</th>
+      <th scope="col">EmployeeType</th>
+      <th scope="col">Salary</th>
+      <th scope="col">DepartmentName</th>
+      <th scope="col">DesignationName</th>    
+    </tr>
+  </thead>
+  <tbody class="table-group-divider" *ngFor="let list of employeeList">
+    <tr>
+      <th scope="row">{{list.employeeId}}</th>
+      <td>{{list.fullName}}</td>
+      <td>{{list.email}}</td>
+      <td>{{list.phone}}</td>
+      <td>{{list.gender}}</td>
+      <td>{{list.dateOfJoining}}</td>
+      <td>{{list.employeeType}}</td>
+      <td>{{list.salary}}</td>
+      <td>{{list.departmentName}}</td>
+      <td>{{list.designationName}}</td>
+    </tr>
+    
+  </tbody>
+  </table>
+</div>
