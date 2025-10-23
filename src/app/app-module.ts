@@ -16,13 +16,14 @@ import { AuthModule } from './auth/auth-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersModule } from './features/users/users-module';
 import { DashboardModule } from './features/dashboard/dashboard-module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth-interceptor-interceptor';
 
 @NgModule({
   declarations: [
     App,
-    Login,
-    Register,
+    // Login,
+    // Register,
     Dashboard,
     UsersList,
     UserDetail,
@@ -39,10 +40,16 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     DashboardModule,
     ReactiveFormsModule,
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
+    // AuthInterceptor
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [App]
 })

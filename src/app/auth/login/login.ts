@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class Login {
     this.userInput = value;
   }
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
   loginForm = new FormGroup({
     emailId : new FormControl('', [Validators.required,]),
     password : new FormControl('', [Validators.required])
@@ -31,6 +32,7 @@ export class Login {
         console.log("Login successful.....", res);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('refreshToken', res.data.refreshToken);
+        this.router.navigateByUrl("/users/list");
       },
       error: (err) => {
         console.log(err);

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EmployeeModel, EmployeeModelRequest } from '../model/employee-model';
+import { EmployeeModel, EmployeeModelRequest, GetAllResponseModel } from '../model/employee-model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,8 @@ export class UserService {
   // employeeList: EmployeeModel[] = [];
   private employee$ = new BehaviorSubject<EmployeeModel>({} as EmployeeModel);
   employee = this.employee$.asObservable();
-
+  private users$ = new BehaviorSubject<GetAllResponseModel>({} as GetAllResponseModel);
+  users = this.users$.asObservable();
   // private updateEmployee$ = new BehaviorSubject<EmployeeModelRequest>();
   // updateEmployee = this.updateEmployee$.asObservable();
 
@@ -32,6 +33,17 @@ export class UserService {
   //     }
   //    });
   // }
+  getUserList() {
+    this.http.get<GetAllResponseModel>("https://api.freeprojectapi.com/api/UserApp/GetAllUsers").subscribe({
+      next: (res) => {
+        this.users$.next(res);
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
   getEmployeeList() {
     this.http.get<EmployeeModel[]>(this.url).subscribe({
       next: (res) => {
